@@ -1,0 +1,9 @@
+playwright
+beautifulsoup4
+requests
+pandas
+numpy
+sentence-transformers
+scikit-learn
+streamlit
+tqdm
