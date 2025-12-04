@@ -1,114 +1,74 @@
-# Semantic Book Search -- Scraping + Vettorializzazione + Dashboard
+# Semantic Book Search
+### End-to-End Scraping → Embeddings → Semantic Search Dashboard
 
-## Descrizione
+## Overview
+Semantic Book Search is a full end-to-end search system built entirely in Python.
+It demonstrates the complete pipeline from **web scraping** to **semantic retrieval** and an interactive **Streamlit** UI.
 
-Il progetto implementa un sistema completo di ricerca semantica a
-partire da dati reali raccolti via web scraping.
+## Features
+- Scraping 1000+ books via **Playwright**
+- Dataset creation (title, category, price, rating, URL)
+- Text embeddings using **Sentence Transformers (SBERT)**
+- **Cosine similarity**-based semantic search
+- Category, price, and rating filters
+- Streamlit dashboard for interactive exploration
 
-Pipeline end-to-end:
 
-1.  **Scraping** del sito pubblico di demo Books to Scrape tramite
-    **Playwright**.\
-2.  Costruzione di un **dataset strutturato** con ≥ 1000 libri.\
-3.  **Vettorializzazione** del contenuto testuale con **Sentence
-    Transformers**.\
-4.  Implementazione di un **motore di ricerca semantico + filtri
-    strutturati**.\
-5.  **Dashboard interattiva** sviluppata con **Streamlit**.
+## Architecture
+```
+Scraping (Playwright)
+        ↓
+Dataset (books.csv)
+        ↓
+Embeddings (SBERT → book_embeddings.npy)
+        ↓
+Semantic Search Engine (Cosine Similarity + Filters)
+        ↓
+Streamlit Dashboard (Interactive UI)
+```
 
-------------------------------------------------------------------------
+## Installation
+```
+pip install -r requirements.txt
+playwright install
+```
 
-## Tecnologie utilizzate
+## Run Scraper
+```
+python scrape_books.py
+```
 
--   Python\
--   Playwright\
--   Pandas, NumPy\
--   Sentence Transformers\
--   Scikit-learn\
--   Streamlit
+## Build Embeddings
+```
+python build_embeddings.py
+```
 
-------------------------------------------------------------------------
+## Launch Dashboard
+```
+streamlit run app.py
+```
 
-## Struttura del progetto
+## Project Structure
+```
+semantic-book-search/
+│
+├── scrape_books.py
+├── build_embeddings.py
+├── app.py
+│
+├── books.csv
+├── book_embeddings.npy
+│
+└── README.md
+```
 
-    project-root/
-    │
-    ├─ scrape_books.py          
-    ├─ build_embeddings.py      
-    ├─ app.py                   
-    │
-    ├─ books.csv                
-    ├─ book_embeddings.npy      
+## Technologies
+- Python
+- Playwright
+- SBERT (Sentence Transformers)
+- scikit-learn
+- pandas / numpy
+- Streamlit
 
-------------------------------------------------------------------------
-
-## Dataset
-
-Ogni libro include:
-
--   `title`\
--   `category`\
--   `price`\
--   `rating`\
--   `product_page_url`
-
-Dimensione: **\~1000 righe**
-
-------------------------------------------------------------------------
-
-## Embeddings
-
-La stringa vettorializzata è:
-
-    search_text = title + " [CATEGORY] " + category
-
-Modello utilizzato: `all-MiniLM-L6-v2`\
-Output: matrice `N x 384`
-
-------------------------------------------------------------------------
-
-## Motore di ricerca
-
-### Ricerca semantica:
-
--   embedding della query\
--   cosine similarity con tutti i libri\
--   ordinamento per rilevanza
-
-### Filtri strutturati:
-
--   categoria\
--   prezzo min/max\
--   rating minimo
-
-------------------------------------------------------------------------
-
-## Dashboard
-
-Avvio della dashboard:
-
-    streamlit run app.py
-
-Funzionalità: - barra ricerca semantica\
-- filtri categoria/prezzo/rating\
-- tabella risultati
-
-------------------------------------------------------------------------
-
-## Setup
-
-    pip install -r requirements.txt
-    playwright install
-    python scrape_books.py
-    python build_embeddings.py
-    streamlit run app.py
-
-------------------------------------------------------------------------
-
-## Cosa dimostra il progetto
-
--   Web scraping avanzato\
--   Data engineering\
--   Modelli di embeddings\
--   Motore di ricerca ibrido (semantico + strutturato)\
--   UI completa con Streamlit
+## License
+MIT License.
