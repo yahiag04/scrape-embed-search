@@ -1,4 +1,5 @@
 # Semantic Book Search
+![Dashboard](screenshots/screen.png)
 ### End-to-End Scraping → Embeddings → Semantic Search Dashboard
 
 ## Overview
